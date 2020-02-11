@@ -8,19 +8,22 @@ import { ReactComponent as Mars } from "../../references/mars.svg";
 export class Person extends React.Component {
   photo() {
     if (this.props.person.photo) return <img className="photo" src={this.props.person.photo} />;
-    if (this.props.person.gender == "female") return <Female className="photo"/>;
+    if (this.props.person.gender === "female") return <Female className="photo"/>;
     return <Male className="photo"/>;
   }
 
   gender() {
-    if (this.props.person.gender == "female") return <Venus className="icon"/>;
+    if (this.props.person.gender === "female") return <Venus className="icon"/>;
     return <Mars className="icon"/>;
   }
 
   age() {
     if (this.props.person.date_of_death) return <span></span>;
     if (this.props.person.date_of_birth)
-      return <span></span>;
+  return <span>{
+    new Date().getFullYear() - 
+    new Date(this.props.person.date_of_birth).getFullYear()
+    }</span>;
   }
 
   render() {

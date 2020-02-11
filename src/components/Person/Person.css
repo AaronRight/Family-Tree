@@ -1,5 +1,5 @@
 .person {
-  border: 1px solid red;
+  border: 1px solid black;
   display: flex;
   flex-direction: column;
   max-width: 150px;
@@ -10,6 +10,7 @@
 .person .name {
   display: flex;
   flex-wrap: wrap;
+  word-break: break-word;
   flex-direction: row;
   justify-content: center;
   align-items: center;

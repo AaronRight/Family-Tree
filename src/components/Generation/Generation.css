@@ -1,4 +1,11 @@
 .generation {
-  border: 1px solid red;
+  border: 1px solid grey;
+  display: flex;
+  flex-direction: 'row';
+}
+
+.generation .members_cell{
+  display: flex;
+  flex-direction: 'row';
 }
 

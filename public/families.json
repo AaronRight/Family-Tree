@@ -1,4 +1,34 @@
 {
-    "1": {  }
+    "root": {  
+        "wedding_date": "1985-09-09",
+        "date_of_divorce": "2000-05-05",
+        "people": ["1", "2"],
+        "children": ["3", "4", "5"]
+    },
+
+    "1": {  
+        "wedding_date": "1987-09-09",
+        "people": ["3", "6"],
+        "children": ["9"]
+    },
+
+    "2": {  
+        "wedding_date": "1995-05-03",
+        "people": ["4", "7"],
+        "children": ["10"]
+    },
+
+    "3": {  
+        "wedding_date": "1985-09-09",
+        "date_of_divorce": "2000-05-05",
+        "people": ["5", "8"],
+        "children": ["11"]
+    },
+
+    "4": {  
+        "wedding_date": "1985-09-09",
+        "people": ["5", "13"],
+        "children": ["12"]
+    }
     
 }
