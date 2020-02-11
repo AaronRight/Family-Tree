@@ -2,49 +2,18 @@
    width="100"
    height="100"
    viewBox="0 0 26.458333 26.458334">
-  <g
-     id="g982">
-    <g
-       id="g968">
-      <g
-         id="g955">
-        <path
-           id="path831"
-           d="m 17.52564,9.4588333 a 4.329545,4.329545 0 0 1 -4.329545,4.3295497 4.329545,4.329545 0 0 1 -4.3295449,-4.3295497 4.329545,4.329545 0 0 1 4.3295449,-4.32954 4.329545,4.329545 0 0 1 4.329545,4.32954 z"
-           style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.4552083;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-        <path
-           id="path851"
-           d="m 13.229167,14.138268 v 7.200463"
-           style="fill:none;fill-opacity:1;stroke:#0e030d;stroke-width:1.4552083;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-        <path
-           style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#e06dd3;stroke-width:1.32291663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           d="m 17.52564,9.4588333 a 4.329545,4.329545 0 0 1 -4.329545,4.3295497 4.329545,4.329545 0 0 1 -4.3295449,-4.3295497 4.329545,4.329545 0 0 1 4.3295449,-4.32954 4.329545,4.329545 0 0 1 4.329545,4.32954 z"
-           id="path817" />
-        <g
-           id="g943">
-          <g
-             id="g936">
-            <g
-               id="g930">
-              <g
-                 id="g925">
-                <path
-                   id="path853"
-                   d="M 9.9385552,17.981062 H 16.557425"
-                   style="fill:none;fill-opacity:1;stroke:#0e030d;stroke-width:1.4552083;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-                <path
-                   style="fill:none;fill-opacity:1;stroke:#e06dd3;stroke-width:1.32291663;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-                   d="M 9.9385552,17.981062 H 16.557425"
-                   id="path821" />
-              </g>
-            </g>
-          </g>
-        </g>
-        <path
-           style="fill:none;fill-opacity:1;stroke:#e06dd3;stroke-width:1.32291663;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           d="m 13.229167,14.138268 v 7.200463"
-           id="path819" />
-      </g>
+  <g>
+      <path
+         style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#e06dd3;stroke-width:1.32291663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 17.52564,9.4588333 a 4.329545,4.329545 0 0 1 -4.329545,4.3295497 4.329545,4.329545 0 0 1 -4.3295449,-4.3295497 4.329545,4.329545 0 0 1 4.3295449,-4.32954 4.329545,4.329545 0 0 1 4.329545,4.32954 z"
+         id="path817" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#e06dd3;stroke-width:1.32291663;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 9.9385552,17.981062 H 16.557425"
+         id="path821" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#e06dd3;stroke-width:1.32291663;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 13.229167,14.138268 v 7.200463"
+         id="path819" />
     </g>
-  </g>
 </svg>

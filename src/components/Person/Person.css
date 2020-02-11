@@ -1,3 +1,45 @@
-.person{
-    border: 1px solid red;
+.person {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  max-width: 150px;
+  justify-content: center;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.person .name {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.person .visual {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.person .visual .photo {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.person .visual .icon {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.person .visual .gender {
+  display: flex;
+  flex-direction: column;
+}
+
+.person .life_time {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
