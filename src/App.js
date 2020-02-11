@@ -1,6 +1,7 @@
 import React from "react";
 import { Person, Generation } from "./components";
 import "./App.css";
+import { ArcherContainer } from 'react-archer';
 
 /* 
 for(let i = 1; i<100; i++){
@@ -91,6 +92,8 @@ export class App extends React.Component {
   render() {
     return (
       <div className="App">
+
+      <ArcherContainer>
         {Object.keys(this.state.generations).map(el => (
           <Generation
             key={el}
@@ -99,6 +102,8 @@ export class App extends React.Component {
             families={this.state.families}
           />
         ))}
+
+      </ArcherContainer>
       </div>
     );
   }

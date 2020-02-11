@@ -5,6 +5,7 @@
   max-width: 150px;
   justify-content: center;
   font-family: "Times New Roman", Times, serif;
+  padding: 5px;
 }
 
 .person .name {

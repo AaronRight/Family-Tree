@@ -1,11 +1,54 @@
 .generation {
-  border: 1px solid grey;
   display: flex;
-  flex-direction: 'row';
+  flex-direction: row;
+  flex:1;
+  justify-content: center;
+  align-items: stretch;
 }
 
-.generation .members_cell{
+.realm{
+  flex:1;
   display: flex;
-  flex-direction: 'row';
+  flex-direction: column;
+}
+
+.generation_number{
+  border: 1px solid black;
+}
+
+.generation_number span{
+  height: 100%;
+  margin: 10px;
+  
+justify-content: center;
+display: flex;
+flex-direction: column;
+}
+
+.generation_realm {
+  display: flex;
+  flex-direction: row;
+  flex:1;
+
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.family_realm {
+  display: flex;
+  flex-direction: row;
+  flex:1;
+
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.members_cell{
+  display: flex;
+flex-wrap: wrap;
+flex-direction: row;
+align-items: baseline;
 }
 

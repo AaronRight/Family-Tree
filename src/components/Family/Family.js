@@ -8,9 +8,19 @@ import "./Family.css";
 
 export class Family extends React.Component {
   render() {
+    console.log(this.props.family)
     return (
       <div className="family">
-        
+        <span>{this.props.family.wedding_date}</span>
+
+        {
+          this.props.family.date_of_divorce ?
+            (
+              <span> &nbsp;/&nbsp; </span>
+            ) : (<span></span>)
+        }
+
+        <span>{this.props.family.date_of_divorce}</span>
       </div>
     );
   }

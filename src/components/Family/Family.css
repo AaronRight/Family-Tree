@@ -1,3 +1,8 @@
 .family {
-  border: 1px solid red;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
 }
