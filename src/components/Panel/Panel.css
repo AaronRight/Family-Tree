@@ -1,0 +1,16 @@
+.panel{
+    background: rgba(255,0,0,0.4);
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    display: flex
+}
+
+.button{
+    width: 8vw;
+    height: 8vw;
+    background: rgba(255,255,0,0.4);
+    margin: 5px;
+}

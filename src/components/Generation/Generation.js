@@ -73,7 +73,6 @@ export class Generation extends React.Component {
       relations[f] = []
       if(this.props.families[f]){
       for (let p of this.props.families[f].children) {
-        console.log(`p_${p}`)
         relations[f] = [...relations[f],
           {
             targetId: `p_${p}`,

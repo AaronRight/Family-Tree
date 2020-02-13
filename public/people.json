@@ -97,7 +97,7 @@
     "17": {
         "first_name": 17,
         "last_name": 17,
-        "gender": "male",
+        "gender": "female",
         "date_of_birth": "1965-11-6"
     },
     "18": {
@@ -116,7 +116,7 @@
     "20": {
         "first_name": 20,
         "last_name": 20,
-        "gender": "female",
+        "gender": "male",
         "date_of_birth": "1990-11-4"
     },
     "21": {

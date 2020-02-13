@@ -1,5 +1,5 @@
 import React from "react";
-import { Person, Generation } from "./components";
+import { Person, Generation, Panel } from "./components";
 import "./App.css";
 import { ArcherContainer } from 'react-archer';
 
@@ -30,6 +30,20 @@ export class App extends React.Component {
     return families;
   }
 
+  getRidOfDuplicates(array){
+    let already = new Set()
+    let result = []
+    for(let items of array){
+      for(let item of items){
+        if(!already.has(item)){
+          result = [...result, [item]]
+          already.add(item)
+        }
+      }
+    }
+    return result
+  }
+
   calculateNextGeneration(generations, n) {
     let last_generation = true;
     for (let set_of_families of generations[n - 1]["families"]) {
@@ -47,13 +61,15 @@ export class App extends React.Component {
         for (let c of children) {
           let families = this.findFamilies(c);
           if (families.length > 0) last_generation = false;
-          generations[n]["families"] = [
-            ...generations[n]["families"],
-            families
-          ];
+            generations[n]["families"] = [
+              ...generations[n]["families"],
+              families
+            ];
         }
       }
     }
+
+    generations[n]["families"] = this.getRidOfDuplicates(generations[n]["families"]);
 
     if (!last_generation) this.calculateNextGeneration(generations, n + 1);
   }
@@ -92,6 +108,8 @@ export class App extends React.Component {
   render() {
     return (
       <div className="App">
+
+      <Panel />
 
       <ArcherContainer>
         {Object.keys(this.state.generations).map(el => (
