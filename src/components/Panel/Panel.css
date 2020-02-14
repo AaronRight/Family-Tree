@@ -5,12 +5,12 @@
     position: fixed;
     left: 0px;
     top: 0px;
-    display: flex
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
 }
 
 .button{
-    width: 8vw;
-    height: 8vw;
-    background: rgba(255,255,0,0.4);
-    margin: 5px;
+    width: 100px;
+    background: rgb(255,255,0);
 }

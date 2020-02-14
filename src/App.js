@@ -20,8 +20,16 @@ export class App extends React.Component {
   state = {
     people: {},
     families: {},
-    generations: {}
+    show_till: 9999,
+    toggled_families: []
   };
+  
+  constructor(props){
+    super(props)
+    
+    this.toggleGeneration = this.toggleGeneration.bind(this);
+    this.toggleFamily = this.toggleFamily.bind(this);
+  }
 
   findFamilies(personId) {
     let families = [];
@@ -45,7 +53,13 @@ export class App extends React.Component {
   }
 
   calculateNextGeneration(generations, n) {
+
     let last_generation = true;
+    if( this.state.show_till <= n ) {
+      generations[n-1]["families"] = []
+      return
+    }
+
     for (let set_of_families of generations[n - 1]["families"]) {
       for (let f of set_of_families) {
         if (generations[n] === undefined) generations[n] = {};
@@ -58,14 +72,18 @@ export class App extends React.Component {
         let children = this.state.families[f]["children"];
         if (children === undefined) children = [];
         generations[n]["people"] = [...generations[n]["people"], children];
+
         for (let c of children) {
           let families = this.findFamilies(c);
           if (families.length > 0) last_generation = false;
+          
             generations[n]["families"] = [
               ...generations[n]["families"],
               families
             ];
         }
+
+        
       }
     }
 
@@ -83,6 +101,7 @@ export class App extends React.Component {
       Easiest - point from where we should start - 'root' point - we get rid of presearhing tree, 
       and can calculate generations immediately
     */
+    if (!this.state.families["root"]) return {}
     let generations = {};
     generations["0"] = {
       people: [this.state.families["root"].people],
@@ -90,8 +109,9 @@ export class App extends React.Component {
       number: 0
     };
     this.calculateNextGeneration(generations, 1);
-
-    this.setState({ generations });
+    //console.log(generations)
+    
+    return generations;
   }
 
   async componentDidMount() {
@@ -101,28 +121,46 @@ export class App extends React.Component {
       people: await resp_people.json(),
       families: await resp_families.json()
     });
+  }
 
-    this.calculateGenerations();
+  toggleGeneration(n){
+    if(this.state.show_till == n)
+      this.setState({show_till: 9999});
+    else 
+      this.setState({show_till: n});
+  }
+
+  toggleFamily(n){
+    console.log(132)
+    if(this.state.toggled_families.includes(n))
+      this.setState({toggled_families: this.state.toggled_families.filter((el) => el == n)});
+    else 
+      this.setState({toggled_families: [...this.state.toggled_families,n]});
   }
 
   render() {
+    
+    let generations = this.calculateGenerations();
+    console.log(generations)
     return (
       <div className="App">
 
       <Panel />
 
       <ArcherContainer>
-        {Object.keys(this.state.generations).map(el => (
+        {Object.keys(generations).map(el => (
           <Generation
-            key={el}
-            generation={this.state.generations[el]}
-            people={this.state.people}
-            families={this.state.families}
-          />
+          key={el}
+          generation={generations[el]}
+          people={this.state.people}
+          families={this.state.families}
+          toggleGeneration={this.toggleGeneration}
+          toggleFamily={this.toggleFamily}
+        />
         ))}
 
       </ArcherContainer>
       </div>
     );
   }
-}
+}/*  */

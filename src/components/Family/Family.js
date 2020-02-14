@@ -9,7 +9,8 @@ import "./Family.css";
 export class Family extends React.Component {
   render() {
     return (
-      <div className="family">
+      <div className="family" onClick={() => console.log(123)}
+      >
         <span>&nbsp;{this.props.family.wedding_date}</span>
 
         {
