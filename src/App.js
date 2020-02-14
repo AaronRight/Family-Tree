@@ -1,7 +1,7 @@
 import React from "react";
-import { Person, Generation, Panel } from "./components";
+import { Person, Generation, Panel, Arrows } from "./components";
 import "./App.css";
-import { ArcherContainer } from 'react-archer';
+//import { ArcherContainer } from 'react-archer';
 
 /* 
 for(let i = 1; i<100; i++){
@@ -21,12 +21,13 @@ export class App extends React.Component {
     people: {},
     families: {},
     show_till: 9999,
-    toggled_families: []
+    toggled_families: [],
+    relations: []
   };
-  
-  constructor(props){
-    super(props)
-    
+
+  constructor(props) {
+    super(props);
+
     this.toggleGeneration = this.toggleGeneration.bind(this);
     this.toggleFamily = this.toggleFamily.bind(this);
   }
@@ -38,36 +39,49 @@ export class App extends React.Component {
     return families;
   }
 
-  getRidOfDuplicates(array){
-    let already = new Set()
-    let result = []
-    for(let items of array){
-      for(let item of items){
-        if(!already.has(item)){
-          result = [...result, [item]]
-          already.add(item)
+  getRidOfDuplicates(array) {
+    let already = new Set();
+    let result = [];
+    for (let items of array) {
+      for (let item of items) {
+        if (!already.has(item)) {
+          result = [...result, [item]];
+          already.add(item);
         }
       }
     }
-    return result
+    return result;
+  }
+
+  toggleGenerationFlag(generations) {
+    for (let g of Object.keys(generations)) {
+      if (this.state.show_till - 1 == generations[g].number) {
+        generations[g].toggled = true;
+      } else {
+        generations[g].toggled = false;
+      }
+    }
   }
 
   calculateNextGeneration(generations, n) {
+    if (generations[n] === undefined) generations[n] = {};
+    generations[n]["number"] = n;
+    if (generations[n]["people"] === undefined) generations[n]["people"] = [];
+    if (generations[n]["families"] === undefined)
+      generations[n]["families"] = [];
+    if (generations[n]["toggled_families"] === undefined)
+      generations[n]["toggled_families"] = [];
 
     let last_generation = true;
-    if( this.state.show_till <= n ) {
-      generations[n-1]["families"] = []
-      return
+    if (this.state.show_till <= n) {
+      generations[n - 1]["families"] = [];
+      this.toggleGenerationFlag(generations);
+      return;
     }
 
     for (let set_of_families of generations[n - 1]["families"]) {
       for (let f of set_of_families) {
-        if (generations[n] === undefined) generations[n] = {};
-        generations[n]["number"] = n;
-        if (generations[n]["people"] === undefined)
-          generations[n]["people"] = [];
-        if (generations[n]["families"] === undefined)
-          generations[n]["families"] = [];
+        if (this.state.toggled_families.includes(f)) continue;
 
         let children = this.state.families[f]["children"];
         if (children === undefined) children = [];
@@ -76,18 +90,18 @@ export class App extends React.Component {
         for (let c of children) {
           let families = this.findFamilies(c);
           if (families.length > 0) last_generation = false;
-          
-            generations[n]["families"] = [
-              ...generations[n]["families"],
-              families
-            ];
-        }
 
-        
+          generations[n]["families"] = [
+            ...generations[n]["families"],
+            families
+          ];
+        }
       }
     }
 
-    generations[n]["families"] = this.getRidOfDuplicates(generations[n]["families"]);
+    generations[n]["families"] = this.getRidOfDuplicates(
+      generations[n]["families"]
+    );
 
     if (!last_generation) this.calculateNextGeneration(generations, n + 1);
   }
@@ -101,16 +115,16 @@ export class App extends React.Component {
       Easiest - point from where we should start - 'root' point - we get rid of presearhing tree, 
       and can calculate generations immediately
     */
-    if (!this.state.families["root"]) return {}
+    if (!this.state.families["root"]) return {};
     let generations = {};
     generations["0"] = {
       people: [this.state.families["root"].people],
       families: [["root"]],
-      number: 0
+      number: 0,
+      toggled_families: []
     };
     this.calculateNextGeneration(generations, 1);
-    //console.log(generations)
-    
+
     return generations;
   }
 
@@ -123,44 +137,42 @@ export class App extends React.Component {
     });
   }
 
-  toggleGeneration(n){
-    if(this.state.show_till == n)
-      this.setState({show_till: 9999});
-    else 
-      this.setState({show_till: n});
+  toggleGeneration(n) {
+    if (this.state.show_till == n) this.setState({ show_till: 9999 });
+    else this.setState({ show_till: n });
   }
 
-  toggleFamily(n){
-    console.log(132)
-    if(this.state.toggled_families.includes(n))
-      this.setState({toggled_families: this.state.toggled_families.filter((el) => el == n)});
-    else 
-      this.setState({toggled_families: [...this.state.toggled_families,n]});
+  toggleFamily(n) {
+    if (this.state.toggled_families.includes(n)) {
+      this.setState({
+        toggled_families: this.state.toggled_families.filter(e => e != n)
+      });
+    } else {
+      this.setState({ toggled_families: [...this.state.toggled_families, n] });
+    }
   }
 
   render() {
-    
     let generations = this.calculateGenerations();
-    console.log(generations)
+    let refs = {};
     return (
       <div className="App">
-
-      <Panel />
-
-      <ArcherContainer>
+        <Panel />
         {Object.keys(generations).map(el => (
           <Generation
-          key={el}
-          generation={generations[el]}
-          people={this.state.people}
-          families={this.state.families}
-          toggleGeneration={this.toggleGeneration}
-          toggleFamily={this.toggleFamily}
-        />
+            key={el}
+            generation={generations[el]}
+            people={this.state.people}
+            families={this.state.families}
+            toggleGeneration={this.toggleGeneration}
+            toggleFamily={this.toggleFamily}
+            toggled_families={this.state.toggled_families}
+            references={refs}
+          />
         ))}
 
-      </ArcherContainer>
+        <Arrows references={refs} relations={this.state.relations} />
       </div>
     );
   }
-}/*  */
+} /*  */

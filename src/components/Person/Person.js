@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from 'react-dom';
 import "./Person.css";
 import { ReactComponent as Female } from "../../references/female.svg";
 import { ReactComponent as Male } from "../../references/male.svg";
@@ -26,9 +27,23 @@ export class Person extends React.Component {
     }</span>;
   }
 
+componentDidMount(){
+  /*let rect = ReactDOM.findDOMNode(this.refs['ref'])
+  .getBoundingClientRect();
+
+  let points = {
+    name: this.props.id,
+    in: { x: rect.left + rect.width / 2, y: rect.top },
+    out: { x: rect.left + rect.width / 2, y: rect.bottom }
+  }
+*/
+  console.log(this.props.id)
+}
+
   render() {
+    
     return (
-      <div className="person">
+      <div ref={this.props.id} className="person">
         <div className="name">
           <span> {this.props.person.first_name} </span>
           <span> &nbsp; </span>

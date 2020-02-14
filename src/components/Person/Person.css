@@ -1,11 +1,13 @@
 .person {
-  border: 1px solid black;
+  border: 2px solid black;
   display: flex;
   flex-direction: column;
   max-width: 150px;
   justify-content: center;
   font-family: "Times New Roman", Times, serif;
   padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
 }
 
 .person .name {
@@ -15,6 +17,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  font-family: cursive;
 }
 
 .person .visual {
@@ -36,6 +39,7 @@
 .person .visual .gender {
   display: flex;
   flex-direction: column;
+  font-family: cursive;
 }
 
 .person .life_time {
@@ -44,4 +48,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+    font-family: cursive;
+    font-style: italic;
+    font-size: small;
 }

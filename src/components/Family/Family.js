@@ -7,9 +7,14 @@ import "./Family.css";
 */
 
 export class Family extends React.Component {
+  setReference(el){
+    this.props.references[this.props.id] = el;
+    console.log(this.props.references)
+  }
+
   render() {
     return (
-      <div className="family" onClick={() => console.log(123)}
+      <div ref={ (el) => this.setReference(el) } className={`family ${this.props.toggled ? 'family_toggled' : ''}`} onClick={() =>  (this.props.toggleFamily(this.props.id))}
       >
         <span>&nbsp;{this.props.family.wedding_date}</span>
 
@@ -20,7 +25,7 @@ export class Family extends React.Component {
             ) : (<span></span>)
         }
 
-        <span>{this.props.family.date_of_divorce}</span>
+        <span>{this.props.family.date_of_divorce}&nbsp;</span>
       </div>
     );
   }
