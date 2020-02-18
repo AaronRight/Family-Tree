@@ -2,21 +2,23 @@
 <svg
    viewBox="0 0 26.458333 26.458334"
    height="100"
-   width="100">
+   width="100"
+   >
   <g
-     transform="translate(0,-270.54165)"
+     transform="translate(-1.6974361,-269.38222)"
      id="layer1">
     <path
        transform="matrix(0.44675506,-0.4335968,0.69646016,0.71759546,-194.40081,92.043218)"
        id="path815"
        d="M 6.047619,282.73138 H 20.363467"
-       style="fill:none;stroke:#000000;stroke-width:3.3532629;stroke-linecap:round;" />
+       style="fill:none;;stroke-width:3.3532629;stroke-linecap:round"
+        />
     <ellipse
        ry="6.3378077"
        rx="6.3378081"
        cy="280.74701"
        cx="16.536459"
        id="path844"
-       style="fill:none;fill-opacity:0.49431823;fill-rule:nonzero;stroke:#000000;stroke-width:3.3532629;" />
+       style="fill:none;fill-opacity:0.49431823;fill-rule:nonzero;;stroke-width:3.3532629" />
   </g>
 </svg>

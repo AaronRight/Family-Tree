@@ -10,7 +10,9 @@ export class App extends React.Component {
     families: {},
     show_till: 9999,
     toggled_families: [],
-    relations: []
+    relations: [],
+    scale: 1,
+    choose: ''
   };
 
   constructor(props) {
@@ -18,6 +20,8 @@ export class App extends React.Component {
 
     this.toggleGeneration = this.toggleGeneration.bind(this);
     this.toggleFamily = this.toggleFamily.bind(this);
+    this.zoom = this.zoom.bind(this);
+    this.choose = this.choose.bind(this);
   }
 
   async componentDidMount() {
@@ -27,6 +31,14 @@ export class App extends React.Component {
       people: await resp_people.json(),
       families: await resp_families.json()
     });
+  }
+
+  zoom(in_out = false){
+    this.setState({scale : this.state.scale + ( in_out ? 1 : -1 ) * 0.05});
+  }
+
+  choose(text){
+    this.setState({choose : text});
   }
 
   toggleGeneration(n) {
@@ -49,8 +61,8 @@ export class App extends React.Component {
 
     return (
       <div className="App">
-        <Panel />
-        <ArcherContainer>
+        <Panel zoom={this.zoom} choose={this.choose}/>
+        <ArcherContainer >
           <div style={{ display: 'flex', flexDirection: 'column-reverse' }}>
             {[].concat(Object.keys(generations)).reverse().map(el => (
               <Generation
@@ -61,6 +73,8 @@ export class App extends React.Component {
                 toggleGeneration={this.toggleGeneration}
                 toggleFamily={this.toggleFamily}
                 toggled_families={this.state.toggled_families}
+                scale={this.state.scale}
+                choose={this.state.choose}
               />
             ))}
           </div>

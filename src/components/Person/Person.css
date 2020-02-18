@@ -2,11 +2,14 @@
   border: 2px solid black;
   display: flex;
   flex-direction: column;
-  max-width: 150px;
   justify-content: center;
   font-family: "Times New Roman", Times, serif;
   padding: 5px;
   border-radius: 5px;
+}
+
+.choosed{
+  background-color: rgba(120,255,120, 0.5);
 }
 
 .person .name {
@@ -17,28 +20,30 @@
   justify-content: center;
   align-items: center;
   font-family: cursive;
+  flex: 0.15;
 }
 
 .person .visual {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex: 0.7;
 }
 
 .person .visual .photo {
-  max-width: 100px;
-  max-height: 100px;
+  flex: 0.9;
 }
 
 .person .visual .icon {
-  max-width: 40px;
-  max-height: 40px;
+  flex: 0.5;
 }
 
 .person .visual .gender {
   display: flex;
   flex-direction: column;
   font-family: cursive;
+  flex: 0.1;
+  justify-content: space-between;
 }
 
 .person .life_time {
@@ -46,8 +51,8 @@
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
+  flex: 0.15;
   align-items: center;
     font-family: cursive;
     font-style: italic;
-    font-size: small;
 }

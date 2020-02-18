@@ -18,7 +18,14 @@
   z-index: 100;
   border-radius: 5px;
   margin: 5px;
-  height: 200px;
+  height: 50%;
+  min-height: 200px;
+  align-items: center;
+  display: flex;
+}
+
+.generation_number:hover{
+  background: rgba(220,220,220, 0.5);
 }
 
 .generation_number_border{
@@ -40,17 +47,18 @@ font-family: cursive;
 .generation_realm {
   display: flex;
   flex-direction: row;
-  flex:1;
+  flex:0.75;
 
   flex-wrap: wrap;
   justify-content: center;
-  align-items: stretch;
+
+  align-items: center;
 }
 
 .family_realm {
   display: flex;
   flex-direction: row;
-  flex:1;
+  flex:0.25;
 
   flex-wrap: wrap;
   justify-content: center;
@@ -71,5 +79,6 @@ font-family: cursive;
 flex-wrap: wrap;
 flex-direction: row;
 align-items: baseline;
+margin: 25px;
 }
 

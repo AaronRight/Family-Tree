@@ -3,6 +3,7 @@ import "./Generation.css";
 import { Person, Family, getRidOfDuplicates } from "..";
 import { findFamilies } from "../Family/Family";
 import { ArcherElement } from "react-archer";
+import { scaleGenerationIcon, scaleFamilyRealm } from '..'
 
 function toggleGenerationFlag(generations, show_till) {
   for (let g of Object.keys(generations)) {
@@ -124,12 +125,12 @@ export class Generation extends React.Component {
       <div key={id} className="members_cell">
         {people.map(el => (
           <ArcherElement
-            style={{ margin: '50px' }}
+            style={{ margin: '5px' }}
             relations={relations[el]}
             key={el}
             id={`p_${el}`}
           >
-            <Person person={this.props.people[el]} />
+            <Person person={this.props.people[el]} scale={this.props.scale} choose={this.props.choose}/>
           </ArcherElement>
         ))}
       </div>
@@ -180,6 +181,7 @@ export class Generation extends React.Component {
     return (
       <div className="generation">
         <div
+          style={scaleGenerationIcon(this.props.scale)}
           className={`generation_number ${
             this.props.generation.toggled ? "generation_number_border" : ""
             }`}
@@ -198,13 +200,14 @@ export class Generation extends React.Component {
                   key={el}
                   id={`f_${el}`}
                   relations={relations[el]}
+                  style={scaleFamilyRealm(this.props.scale)}
                 >
                   <Family
                     toggleFamily={this.props.toggleFamily}
                     id={el}
                     toggled={this.props.toggled_families.includes(el)}
                     family={this.props.families[el]}
-
+                    scale={this.props.scale}
                   />
                 </ArcherElement>
               ))

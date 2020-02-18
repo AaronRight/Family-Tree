@@ -4,17 +4,18 @@ import { ReactComponent as Female } from "../../references/female.svg";
 import { ReactComponent as Male } from "../../references/male.svg";
 import { ReactComponent as Venus } from "../../references/venus.svg";
 import { ReactComponent as Mars } from "../../references/mars.svg";
+import { scalePerson, scalePhoto, scaleSvg, scaleGenderIcon } from '..'
 
 export class Person extends React.Component {
   photo() {
-    if (this.props.person.photo) return <img className="photo" src={this.props.person.photo} />;
-    if (this.props.person.gender === "female") return <Female className="photo"/>;
-    return <Male className="photo"/>;
+    if (this.props.person.photo) return <img style={scalePhoto(this.props.scale)} className="photo" src={this.props.person.photo} />;
+    if (this.props.person.gender === "female") return <Female style={scaleSvg(this.props.scale)} className="photo"/>;
+    return <Male style={scaleSvg(this.props.scale)} className="photo"/>;
   }
 
   gender() {
-    if (this.props.person.gender === "female") return <Venus className="icon"/>;
-    return <Mars className="icon"/>;
+    if (this.props.person.gender === "female") return <Venus style={scaleGenderIcon(this.props.scale)} className="icon"/>;
+    return <Mars style={scaleGenderIcon(this.props.scale)} className="icon"/>;
   }
 
   age() {
@@ -26,9 +27,20 @@ export class Person extends React.Component {
     }</span>;
   }
 
+  isChoosen(name){
+    if (name == '') return false;
+    if(this.props.person.first_name.toString().startsWith(name)
+        || this.props.person.last_name.toString().startsWith(name)
+        || (`${this.props.person.first_name} ${this.props.person.last_name}`).startsWith(name)  
+        || (`${this.props.person.last_name} ${this.props.person.first_name}`).startsWith(name)  )
+        return true;
+    return false;    
+  }
+
   render() {
     return (
-      <div ref={this.props.id} className="person">
+      <div style={scalePerson(this.props.scale)}
+       ref={this.props.id} className={`person ${this.isChoosen(this.props.choose) && 'choosed'}`}>
         <div className="name">
           <span> {this.props.person.first_name} </span>
           <span> &nbsp; </span>
