@@ -104,7 +104,6 @@ export class Generation extends React.Component {
 
     already_listed.al = [...already_listed.al, ...people];
 
-    //console.log(1)
     let relations = {};
     for (let p of people) {
       relations[p] = [];
@@ -124,11 +123,10 @@ export class Generation extends React.Component {
     function compare(a, b) {
       if (new Date(a.date_of_birth) > new Date(b.date_of_birth)) return 1;
       if (new Date(a.date_of_birth) < new Date(b.date_of_birth)) return -1;
-    
+
       return 0;
     }
     people.sort(compare);
-
 
     return (
       <div key={id} className="members_cell">
@@ -202,7 +200,7 @@ export class Generation extends React.Component {
             this.props.settings.default.generationNumber,
             this.props.settings[this.props.generation.number]
             && this.props.settings[this.props.generation.number].generationNumber)
-           ) }
+          )}
           className={`generation_number ${
             this.props.generation.toggled ? "generation_number_border" : ""
             }`}
