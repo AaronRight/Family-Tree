@@ -6,6 +6,10 @@
   align-items: stretch;
 }
 
-img, .person svg{
-  z-index: -1;
+path{
+  z-index:5000
+}
+
+.App>div>svg{
+  z-index:100
 }

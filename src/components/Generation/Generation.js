@@ -1,6 +1,6 @@
 import React from "react";
 import "./Generation.css";
-import { Person, Family, getRidOfDuplicates } from "..";
+import { Person, Family, getRidOfDuplicates, sumObjects } from "..";
 import { findFamilies } from "../Family/Family";
 import { ArcherElement } from "react-archer";
 import { scaleGenerationIcon, scaleFamilyRealm } from '..'
@@ -82,7 +82,7 @@ export function calculateGenerations(show_till, toggled_families, families) {
 
 
 export class Generation extends React.Component {
-  
+
   findRefernced(id, already_listed) {
     /* draw not only direct children in generation, but their partners */
     let people = [];
@@ -120,7 +120,16 @@ export class Generation extends React.Component {
         ];
       }
     }
-    //console.log(relations)
+    /* order by date of birth */
+    function compare(a, b) {
+      if (new Date(a.date_of_birth) > new Date(b.date_of_birth)) return 1;
+      if (new Date(a.date_of_birth) < new Date(b.date_of_birth)) return -1;
+    
+      return 0;
+    }
+    people.sort(compare);
+
+
     return (
       <div key={id} className="members_cell">
         {people.map(el => (
@@ -130,7 +139,11 @@ export class Generation extends React.Component {
             key={el}
             id={`p_${el}`}
           >
-            <Person person={this.props.people[el]} scale={this.props.scale} choose={this.props.choose}/>
+            <Person person={this.props.people[el]} scale={this.props.scale} choose={this.props.choose} style={sumObjects(
+              this.props.settings.default.person,
+              this.props.settings[this.props.generation.number]
+              && this.props.settings[this.props.generation.number].person)
+            } />
           </ArcherElement>
         ))}
       </div>
@@ -177,11 +190,19 @@ export class Generation extends React.Component {
       }
     }
     //
-    //console.log(relations)
     return (
-      <div className="generation">
+      <div className="generation" style={sumObjects(
+        this.props.settings.default.generation,
+        this.props.settings[this.props.generation.number]
+        && this.props.settings[this.props.generation.number].generation)
+      }
+      >
         <div
-          style={scaleGenerationIcon(this.props.scale)}
+          style={sumObjects(scaleGenerationIcon(this.props.scale), sumObjects(
+            this.props.settings.default.generationNumber,
+            this.props.settings[this.props.generation.number]
+            && this.props.settings[this.props.generation.number].generationNumber)
+           ) }
           className={`generation_number ${
             this.props.generation.toggled ? "generation_number_border" : ""
             }`}
@@ -208,6 +229,11 @@ export class Generation extends React.Component {
                     toggled={this.props.toggled_families.includes(el)}
                     family={this.props.families[el]}
                     scale={this.props.scale}
+                    style={sumObjects(
+                      this.props.settings.default.family,
+                      this.props.settings[this.props.generation.number]
+                      && this.props.settings[this.props.generation.number].family)
+                    }
                   />
                 </ArcherElement>
               ))

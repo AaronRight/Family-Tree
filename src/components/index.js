@@ -20,6 +20,12 @@ export function getRidOfDuplicates(array) {
     return result;
   }
 
+export function sumObjects(a, b){
+  if(b== undefined) b = {}
+  return { ...a, ...b };
+  
+}
+
 /* -------------------- Scale functions -------------------- */
 
 export function scaleFamily(scale){

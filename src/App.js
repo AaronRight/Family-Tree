@@ -12,7 +12,8 @@ export class App extends React.Component {
     toggled_families: [],
     relations: [],
     scale: 1,
-    choose: ''
+    choose: '',
+    settings: {}
   };
 
   constructor(props) {
@@ -23,13 +24,18 @@ export class App extends React.Component {
     this.zoom = this.zoom.bind(this);
     this.choose = this.choose.bind(this);
   }
-
+/* 
+  Relationship lines, texts, boxes .... must be easily and independently brandable per generation from the settings file 
+  (ex: border color, text color, font, background color and style)
+*/
   async componentDidMount() {
     let resp_people = await fetch("people.json");
     let resp_families = await fetch("families.json");
+    let resp_settings = await fetch("settings.json");
     this.setState({
       people: await resp_people.json(),
-      families: await resp_families.json()
+      families: await resp_families.json(),
+      settings: await resp_settings.json()
     });
   }
 
@@ -62,7 +68,7 @@ export class App extends React.Component {
     return (
       <div className="App">
         <Panel zoom={this.zoom} choose={this.choose}/>
-        <ArcherContainer >
+        <ArcherContainer>
           <div style={{ display: 'flex', flexDirection: 'column-reverse' }}>
             {[].concat(Object.keys(generations)).reverse().map(el => (
               <Generation
@@ -75,6 +81,7 @@ export class App extends React.Component {
                 toggled_families={this.state.toggled_families}
                 scale={this.state.scale}
                 choose={this.state.choose}
+                settings={this.state.settings}
               />
             ))}
           </div>

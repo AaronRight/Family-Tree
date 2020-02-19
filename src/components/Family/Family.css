@@ -14,11 +14,6 @@
   border: 4px solid black;
 }
 
-.family span{
-  font-family: cursive;
-  font-style: italic;
-}
-
 .family:hover{
   background: rgba(220,220,220, 0.5);
 }
